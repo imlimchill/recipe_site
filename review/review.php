@@ -36,8 +36,13 @@
         text-align: center;
         padding: 30px;
       }
-      
-      
+      #search {
+        border: 0px solid black;
+        border-bottom: 1px solid black;
+      }
+      #searchG {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -45,8 +50,17 @@
       <h2>후기 게시판</h2>
       <!-- Search form -->
       <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-        <label for="search">검색</label>
-        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" id="search">
+        <div class="input-group mb-3" id="searchG">
+          <div class="input-group-prepend">
+            <button class="btn dropdown-toggle form-control-sm " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">제목</a>
+              <div role="separator" class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">작성자</a>
+            </div>
+          </div>
+          <input type="text" class="form-control " placeholder="Search"  aria-label="Search" id="search">
+        </div>
       </form>
       <!-- start review table -->
       <div>
