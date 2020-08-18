@@ -7,7 +7,7 @@
     $member = $sql->fetch_array();
 
     // if $email is null >> page back 
-    if($email > 0) {
+    if($_POST['email']) {
         // if $member is false >> page back
         if($member) {
             echo "<script>alert('당신의 id는 ".$member['mem_id']."'); location.href='./login.html'; </script>";
