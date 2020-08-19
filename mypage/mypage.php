@@ -1,37 +1,58 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
 // 서버에 있는 아이디를 $userid 변수에 삽입
-$userid = $_SESSION['userid'];
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+$userid = $_SESSION['mem_id'];
 $sql = mq("select * from member where mem_id='".$userid."'");
 // $sql에 있는 fetch_array(): 인덱스를 변수에 삽입
 $member = $sql->fetch_array();
 // 콤마를 기준으로 나눠서 배열로 저장
 $filter_Array = explode(",", $member['mem_filter']); 
-$spicy_Array = explode(",", $member['mem_spicy']); 
-// 반복문을 이용하여 배열에 값이 null이 아닐 경우에 'checked' 문자열 삽입
-// count(배열) 배열의 총 숫자보다 i가 작을 때 까지 반복한다.
+$spicy_Array = explode(",", $member['mem_spicy']);
+// $email 변수에 데이터베이스에 있는 mem_email 삽입 
+$email = $member['mem_email'];
+// $filter_Array에 값이 존재하는 지 확인
 $i = 0;
-while($i < count($filter_Array)){ 
-    if($filter_Array[$i] != ""){
-        $num[$i] = "checked"; 
-    } else {
-        $num[$i] = ""; 
+if($member['mem_filter'] != null){
+    // 반복문을 이용하여 배열에 값이 null이 아닐 경우에 'checked' 문자열 삽입
+    // count(배열) 배열의 총 숫자보다 i가 작을 때 까지 반복한다.
+    while($i < count($filter_Array)){ 
+        if($filter_Array[$i] != ""){
+            $num[$i] = "checked"; 
+        } else {
+            $num[$i] = ""; 
+        }
+        $i++;
+    }   
+} else {
+    while($i < 6){
+        $num[$i] = "";
+        $i++;
     }
-    $i++;
 }
-// 반복문을 이용하여 배열에 값이 null이 아닐 경우에 'checked' 문자열 삽입
-// count(배열) 배열의 총 숫자보다 i가 작을 때 까지 반복한다.
 echo "<br>";
 $j = 0;
-while($j < count($spicy_Array)){ 
-    if($spicy_Array[$j] != ""){
-        $idx[$j] = "checked"; 
-    } else {
-        $idx[$j] = ""; 
+// $spicy_Array에 값이 존재하는 지 확인
+if($member['mem_spicy']!= null){
+    // 반복문을 이용하여 배열에 값이 null이 아닐 경우에 'checked' 문자열 삽입
+    // count(배열) 배열의 총 숫자보다 i가 작을 때 까지 반복한다.
+    while($j < count($spicy_Array)){ 
+        if($spicy_Array[$j] != ""){
+            $idx[$j] = "checked"; 
+        } else {
+            $idx[$j] = ""; 
+        }
+        $j++;
     }
-    $j++;
+} else {
+    while($j < 4){
+        $idx[$j] = "";
+        $j++;
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +61,7 @@ while($j < count($spicy_Array)){
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap</title>
+    <title>마이페이지</title>
     <script src="/recipe_site/js/jquery-3.5.1.min.js"></script>
     <script src="/recipe_site/js/bootstrap.min.js"></script>
     <script>
@@ -61,7 +82,7 @@ while($j < count($spicy_Array)){
 
 <body>
     <!-- Bootstrap의 콘텐츠는 항상 class="container"태그 내에 기술한다. 이것에 의해 폭이 자동 조정이 된다.-->
-    <div class="container-fluid" style="border:1px solid black;">
+    <div class="container-fluid">
         <!-- 이것은 콘텐츠의 row(가로 열)를 작성하기 위한 컨테이너이다. 그리드 시스템에서는 이 class="row" 태그 안에 표시할 내용을 준비한다. 
            그로 인해, 이 class="row" 태그 안에 포함된 콘텐츠의 태그가 자동으로 가로로 나란히 정렬되거나, 세로로 정렬되거나 한다.-->
         <div class="row">
@@ -127,11 +148,11 @@ while($j < count($spicy_Array)){
                     <table class="table table-bordered">
                         <tr>
                             <th class="info" style="width: 17%;">ID:</th>
-                            <td style="width: 83%;"><?php echo $_SESSION['userid'] ?></td>
+                            <td style="width: 83%;"><?php echo $userid ?></td>
                         </tr>
                         <tr>
                             <th class="info" style="width: 17%;">email:</th>
-                            <td style="width: 83%;"></td>
+                            <td style="width: 83%;"><?php echo $email;?></td>
                         </tr>
                     </table>
                 </fieldset>

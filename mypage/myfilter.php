@@ -1,9 +1,12 @@
 <?php
 //$_SERVER['DOCUMENT_ROOT'] = 현재 사이트가 위치한 서버상의 위치
 include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     //세션에 있는 아이디 정보를 $userid를 받아온다
-    $userid = $_SESSION['userid'];
+    $userid = $_SESSION['mem_id'];
     //myfilter.php 에서 get값을 받아온다
     $pork = $_GET['pork'];
     $beef = ','.$_GET['beef'];
