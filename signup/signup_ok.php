@@ -28,8 +28,9 @@
 					//mq() 한수를 이용하여 쿼리를 $sql에 삽입
 					$sql = mq("insert into member (mem_id,mem_pw,mem_email) values('".$userid."','".$userpw."','".$email."')");
 					// alert() :  alert()은 경고창(alert box)를 나타내 주는 스크립트입니다.
-					//회원가입이 완료되었을 시 index.php로  
+					//회원가입이 완료되었을 시 login.html 로
 					echo "<script>alert('회원가입이 완료되었습니다.'); location.href='./login.html';</script>";
+
 				} else {
 					// history.back() : 현재 페이지의 한단계 이전 페이지로 이동
 					echo "<script>alert('백종원님에 대한 사랑이 부족합니다.'); history.back();</script>";
