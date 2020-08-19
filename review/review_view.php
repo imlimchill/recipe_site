@@ -16,7 +16,7 @@
 
     <title>review view</title>
     <style>
-      body {
+      #container {
         width:60%;
         margin:auto;
         padding-top: 3%;
@@ -27,6 +27,13 @@
       }
       p {
           float: right;
+      }
+      @media all and (max-width:480px){
+        #container {
+          width: 90%;
+          margin: 0px auto;
+          font-size: 10px;
+        }
       }
     </style>
   </head>

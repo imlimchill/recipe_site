@@ -43,6 +43,17 @@
       #searchG {
         width: 100%;
       }
+      @media all and (max-width:480px){
+        #container {
+          width: 100%;
+          margin: 0px auto;
+          font-size: 10px;
+        }
+        #button {
+          width:70px;
+          font-size: 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -150,7 +161,7 @@
         <!-- end page button -->
 
         <!-- button : new review (move page) -->
-        <a href="./review_new.php" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">new review</a>
+        <a href="./review_new.php" class="btn btn-outline-success" id="button" tabindex="-1" role="button" aria-disabled="true">new</a>
     </div>
   </div>
   </body>
