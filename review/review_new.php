@@ -16,7 +16,7 @@
 
     <title>new review</title>
     <style>
-      body {
+      #container {
         width:60%;
         margin:auto;
       }
@@ -38,8 +38,33 @@
       p5 {
         font-size: 30px;
       }
-      #sucBtn {
+      #button {
         margin-top: 10px;
+      }
+      @media all and (max-width:480px){
+        #container {
+          width: 90%;
+          margin: 0px auto;
+          font-size: 10px;
+        }
+        #textarea {
+        height: 300px;
+        width: 100%;
+        border: 1px solid gray;
+        }
+        .button {
+          width:70px;
+          font-size: 10px;
+          margin-top: 10px;
+        }
+        .option {
+          height: 29px;
+          font-size: 9px;
+        }
+        
+        #changePhone {
+          /* display: none; */
+        }
       }
     </style>
   </head>
@@ -63,24 +88,23 @@
         </div>
         <!-- change p + img -->
         <div class="input-group mb-3">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary action">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" id="option">
+            <label class="btn btn-secondary action option">
               <input type="radio" name="options" id="option1" checked> p1
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary option">
               <input type="radio" name="options" id="option2"> p2
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary option">
               <input type="radio" name="options" id="option3"> p3
             </label>
           </div>
+          <!-- change p + img -->
           <div class="custom-file">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            <label class="custom-file-label" for="inputGroupFile01" id="changePhone">Choose file</label>
             <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
           </div>
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-          </div>
+          
         </div>
         <!-- contant -->
         <div class="input-group">
@@ -90,7 +114,7 @@
           </div>
         </div>
         <!-- button -->
-        <button type="button" class="btn btn-outline-success" id="sucBtn">Success</button>
+        <button type="button" class="btn btn-outline-success button" id="button">Success</button>
     </form>
     </div>
   </body>
