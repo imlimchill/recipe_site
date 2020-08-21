@@ -79,14 +79,14 @@ html;
         </form>
         <!-- <sapn><a href="./recipe_delete.php" class="btn btn-info pull-right">게시물 삭제</a></sapn> -->
         <br /><br />
-        <form class="form-inline">
+        <form class="form-inline" action="./member_delete.php" method="POST">
           <fieldset>
             <legend>회원 리스트</legend>
             <table class="table table-bordered">
               <tr class="info">
                 <th style="width: 22%;">
                   <label>
-                    <input type="checkbox" value="all" class="check_all2" />&nbsp;선택
+                    <input type="checkbox" value="all" name="member" class="check_all2" />&nbsp;선택
                   </label>
                 </th>
                 <th style="width: 78%;">아이디</th>
@@ -97,7 +97,7 @@ html;
                   echo <<< html
                   <tr>
                     <td>
-                      <label><input type="checkbox" value="num" class="check2" /></label>
+                      <label><input type="checkbox" value="$member[0]" name="member[]" class="check2" /></label>
                     </td>
                     <td>$member[0]</td>
                   </tr>
@@ -106,9 +106,9 @@ html;
               ?>
               <!-- end member list -->
             </table>
+            <div><input type="submit" class="btn btn-info pull-right" value="게시물 삭제"></div>
           </fieldset>
         </form>
-        <sapn><a href="" class="btn btn-info pull-right">회원 강퇴</a></sapn>
         <br /><br /><br />
         <div class="text-center">
           <a href="../index.php" class="btn btn-info">홈으로</a>
