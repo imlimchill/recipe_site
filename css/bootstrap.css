@@ -6,13 +6,15 @@
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
-  font-family: sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif; /*폰트변경*/
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
+  font-family: "M PLUS Rounded 1c", sans-serif;
 }
+/*기본 폰트 변경*/
 article,
 aside,
 details,
@@ -266,7 +268,6 @@ th {
 }
 @font-face {
   font-family: "Glyphicons Halflings";
-
   src: url("../fonts/glyphicons-halflings-regular.eot");
   src: url("../fonts/glyphicons-halflings-regular.eot?#iefix")
       format("embedded-opentype"),
@@ -1063,6 +1064,10 @@ th {
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+#reset-background {
+  padding-left: 0;
+  padding-right: 0;
+}
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1090,19 +1095,15 @@ input,
 button,
 select,
 textarea {
-  font-family: inherit;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: inherit;
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #000;
   text-decoration: none;
 }
-a:hover,
-a:focus {
-  color: #23527c;
-  text-decoration: underline;
-}
+
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -1179,7 +1180,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -1572,6 +1573,9 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  max-width: 100%;
+  font-family: "M PLUS Rounded 1c", "Noto Sans KR", sans-serif; /*컨테이너 폰트 변경 기본 폰트 사이즈 추가 전체 크기 설정*/
+  font-size: 16px;
 }
 @media (min-width: 768px) {
   .container {
@@ -1585,12 +1589,13 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1140px; /*메인페이지 크기 변경*/
   }
 }
 .container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
+  display: flex; /*컨테이너 전체 플렉스 변경 패딩 제거*/
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -2644,12 +2649,12 @@ output {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: #f77e8a; /*폼 컨트롤 색상변경 빛나는 색 변경*/
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
+    0 0 8px rgba(247, 126, 138, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
+    0 0 8px rgba(247, 126, 138, 0.6);
 }
 .form-control::-moz-placeholder {
   color: #999;
@@ -3068,8 +3073,8 @@ select[multiple].form-group-lg .form-control {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 3em;
+  font-weight: 700;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -3083,7 +3088,6 @@ select[multiple].form-group-lg .form-control {
   user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
 }
 .btn:focus,
 .btn:active:focus,
@@ -3092,7 +3096,7 @@ select[multiple].form-group-lg .form-control {
 .btn:active.focus,
 .btn.active.focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 .btn:hover,
@@ -3105,8 +3109,6 @@ select[multiple].form-group-lg .form-control {
 .btn.active {
   background-image: none;
   outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .btn.disabled,
 .btn[disabled],
@@ -3515,11 +3517,11 @@ tbody.collapse.in {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
+  min-width: 100%;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
-  text-align: left;
+  text-align: center;
   list-style: none;
   background-color: #fff;
   -webkit-background-clip: padding-box;
@@ -3528,7 +3530,7 @@ tbody.collapse.in {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); /*드롭다운 크기 변경 글자 가운데*/
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -3991,7 +3993,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eee;
-  border-color: #337ab7;
+  color: black !important;
 }
 .nav .nav-divider {
   height: 1px;
@@ -4010,13 +4012,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: -1px;
 }
 .nav-tabs > li > a {
-  margin-right: 2px;
+  margin-right: 0px; /*네브 탭스 안 마진변경 색깔변경*/
   line-height: 1.42857143;
   border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
 }
 .nav-tabs > li > a:hover {
-  border-color: #eee #eee #ddd;
+  border-color: #fff #eee #ddd;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -4155,7 +4156,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -4188,7 +4188,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     box-shadow: none;
   }
   .navbar-collapse.collapse {
-    display: block !important;
+    display: flex !important; /*네브바 디스플레이 변경*/
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
@@ -4322,12 +4322,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
-    width: auto;
+    width: 100% !important; /*네브바 넓이 500% 변경*/
     margin-top: 0;
     background-color: transparent;
     border: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
+    font-size: 1.2em; /*글씨체 변경*/
   }
   .navbar-nav .open .dropdown-menu > li > a,
   .navbar-nav .open .dropdown-menu .dropdown-header {
@@ -4345,6 +4346,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav {
     float: left;
     margin: 0;
+    width: 100%; /*네브바 넓이 100%맞춤*/
   }
   .navbar-nav > li {
     float: left;
@@ -6164,7 +6166,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "M PLUS Rounded 1c", Helvetica, Arial, sans-serif; /*폰트변경*/
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
