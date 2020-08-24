@@ -10,48 +10,63 @@
 	<title>회원탈퇴</title>
 	<!-- 아이디 중복 검사 와 비밀번호 보안성 체크 함수가 담긴 js파일 -->
 	<script src ="../js/checks.js"></script>
-	<link rel="stylesheet" href="/recipe_site/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/recipe_site/css/bootstrap-theme.min.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/js/bootstrap.js">
+    <link rel="stylesheet" href="/recipe_site/signup/js/bootstrap.js.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/signup2.css">
 </head>
-<body>
-	<!-- Bootstrap의 콘텐츠는 항상 class="container"태그 내에 기술한다. 이것에 의해 폭이 자동 조정이 된다.-->
-    <div class="container-fluid">
-        <!-- 이것은 콘텐츠의 row(가로 열)를 작성하기 위한 컨테이너이다. 그리드 시스템에서는 이 class="row" 태그 안에 표시할 내용을 준비한다. 
-        	그로 인해, 이 class="row" 태그 안에 포함된 콘텐츠의 태그가 자동으로 가로로 나란히 정렬되거나, 세로로 정렬되거나 한다.-->
-        <div class="row">
-		    <!-- 폭 조정을 하는 클래스 col-종류-숫자 형태로 작성한다 md:태블릿-->
-			<div class="col-md-12">
-				<div class="page-header">
-                    <h1 class="text-info">회원탈퇴</h1>
-                    <br>
-                    <img src="../signup/img/logo.png" alt="" width="300" class="img-responsive center-block">
-                </div>
-				<!-- <form class="form-inline"> : 입력폼의 입력 항목이 가로로 표시되게 된다. -->
-				<form class="form-inline" method="post" action="./member_delete.php" style="text-align:center;">
-					<div class="from-group">
-						<input type="password" class="form-control" name="userpw" id="pw" onKeyup="safetyPasswordPattern(this); isSame();" style="ime-mode:disabled;" placeholder="패스워드" required/></td>
-					</div>
-					<br>
-					<div class="from-group">
-						<input type="password" class="form-control" name="userpwconfirm" id="pwcheck" onKeyup="isSame()" style="ime-mode:disabled;" placeholder="패스워드 확인" required/>
-					</div>
-					<br>
-					<div class="from-group">
-						<span id="same">비밀번호를 확인합니다.</span>
-					</div>
-					<br>			
-					<div class="from-group">
-							동의하시겠습니까?<input type="checkbox" name="agree" value="agree"></동의하시겠습니까?>
-					</div>
-					<br>
-					<div class="from-group">	
-						<input type="submit" class="btn btn-info" value="탈퇴하기" />
-						<input type="reset" class="btn btn-info" value="다시쓰기" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<body class="text-center">
+<form class="form-signin" method="post" action="./member_delete.php">
+    <div class="container">
+		<!-- post 방식으로 signup_ok.php 에 보낸다. -->
+      	<!--메인 로고 이미지-->    
+		<div>
+			<img src="../signup/img/logo.png"  class="img-responsive center-block" alt="">  
+      	</div>
+		<!--비밀번호 입력칸-->
+		<!-- onKeyUp : 키를 눌렀다 놓았을 때 이벤트 발생 -->
+		<!-- isSame() : 비밀번호가 비밀번호 확인과 일치하는 지를 체크함 -->
+      	<!-- ime-mode:disabled - 영문자만 입력 가능하도록 설정  -->
+      	<div class="row">
+        	<div class="form-group">
+          		<input type="password" id="pw" class="form-control" name="userpw" placeholder="password" onKeyup="isSame();" style="ime-mode:disabled;" required>
+        	</div>
+      	</div>      
+		<!--비밀번호 확인 입력칸-->
+		<!-- isSame() : 비밀번호가 비밀번호 확인과 일치하는 지를 체크함 -->
+		<!-- ime-mode:disabled - 영문자만 입력 가능하도록 설정  -->
+      	<div class="row">
+        	<div class="form-group">
+          		<input type="password" id="pwcheck" class="form-control" name="userpwconfirm" placeholder="password" onKeyup="isSame()" style="ime-mode:disabled;" required>    
+        	</div>
+      	</div> 
+		<br> 
+		<!-- id="same" : onkeyyup 할 시 작동하는 함수가 변경하는 html  -->
+      	<div id="same">비밀번호를 확인합니다.</div>
+		<br>
+		<br>
+     	 <!--동의 의사를 묻는 체크박스-->
+      	<div class="row">
+        	<div class="checkbox mb-3" style="text-align: center;">
+          	<label>  
+            	<input type="checkbox" id="jb-checkbox" name="agree" value="agree">동의하시겠습니까?
+          	</label>      
+        	</div>
+      	</div>  
+      <!--입력을 완료한다음 회원가입 완료 버튼-->
+      	<div class="row">     
+        	<div class="form-group">
+          		<input type="submit" class="btn btn-outline-success" value="탈퇴하기" id="success">
+        	</div>   
+      	</div>
+    </div>     
+</form>
 </body>
 </html>
 
