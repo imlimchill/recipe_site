@@ -10,57 +10,61 @@
 	<title>회원정보수정</title>
 	<!-- 아이디 중복 검사 와 비밀번호 보안성 체크 함수가 담긴 js파일 -->
 	<script src ="../js/checks.js"></script>
-	<link rel="stylesheet" href="/recipe_site/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/recipe_site/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap.css">
+    <link rel="stylesheet" href="/recipe_site/signup/css/bootstrap.css.map">
+    <link rel="stylesheet" href="/recipe_site/signup/js/bootstrap.js">
+    <link rel="stylesheet" href="/recipe_site/signup/js/bootstrap.js.map">
+    <link rel="stylesheet" href="/recipe_site/signup/css/signup2.css">
 </head>
 <body>
-	<!-- Bootstrap의 콘텐츠는 항상 class="container"태그 내에 기술한다. 이것에 의해 폭이 자동 조정이 된다.-->
-    <div class="container-fluid">
-        <!-- 이것은 콘텐츠의 row(가로 열)를 작성하기 위한 컨테이너이다. 그리드 시스템에서는 이 class="row" 태그 안에 표시할 내용을 준비한다. 
-        	그로 인해, 이 class="row" 태그 안에 포함된 콘텐츠의 태그가 자동으로 가로로 나란히 정렬되거나, 세로로 정렬되거나 한다.-->
-        <div class="row">
-		    <!-- 폭 조정을 하는 클래스 col-종류-숫자 형태로 작성한다 md:태블릿-->
-			<div class="col-md-12">
-				<div class="page-header">
-                    <h1 class="text-info">회원정보수정</h1>
-                    <br>
-                    <img src="../signup/img/logo.png" alt="" width="300" class="img-responsive center-block">
-                </div>
-				<!-- <form class="form-inline"> : 입력폼의 입력 항목이 가로로 표시되게 된다. -->
-				<form class="form-inline" method="post" action="./member_update.php" style="text-align:center;">
-					<div class="from-group">
-						<!-- onKeyUp : 키를 눌렀다 놓았을 때 이벤트 발생 -->
-						<!-- safetyPasswordPattern(this) : 비밀번호의 보안레벨을 체크함 -->
-						<span><input type="password" class="form-control" name="userpw" id="pw" onKeyup="safetyPasswordPattern(this); isSame();" style="ime-mode:disabled;" placeholder="패스워드" required/></td></span>
-					</div>
-					<br>
-					<div class="from-group">
-						<span id="makyText">:: 비밀번호를 입력해 주세요(대소문자, 숫자, 특수문자 포함) ::</span>
-					</div>
-					<br>			
-					<div class="from-group input-group">
-						<span><input type="text" class="form-control" size="20" name="email" placeholder="이메일을 입력해주세요." required ></span>
-						<span><select class="form-control" name="emailaddress"></span>
-									<option>
-										@naver.com
-									</option>
-									<option>
-										@google.com
-									</option>
-									<option>
-										@daum.com
-									</option>
-						</select>
-					</div>
-					<br>
-					<br>
-					<div class="from-group">	
-						<input type="submit" class="btn btn-info" value="수정하기" />
-						<input type="reset" class="btn btn-info" value="다시쓰기" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<form class="form-signin" method="post" action="./member_update.php">
+    <div class="container">
+		<!-- post 방식으로 signup_ok.php 에 보낸다. -->
+    	<!--메인 로고 이미지-->    
+		<div>
+			<img src="../signup/img/logo.png"  class="img-responsive center-block" alt="">  
+      	</div>
+		<!--비밀번호 입력칸-->
+		<!-- onKeyUp : 키를 눌렀다 놓았을 때 이벤트 발생 -->
+		<!-- safetyPasswordPattern(this) : 비밀번호의 보안레벨을 체크함 -->
+		<!-- isSame() : 비밀번호가 비밀번호 확인과 일치하는 지를 체크함 -->
+      	<!-- ime-mode:disabled - 영문자만 입력 가능하도록 설정  -->
+      	<div class="row">
+        	<div class="form-group">
+          		<input type="password" id="pw" class="form-control" name="userpw" placeholder="password" onKeyup="safetyPasswordPattern(this);" style="ime-mode:disabled;" required>
+        	</div>
+      	</div>      
+		<!-- id="makyText" : onkeyyup 할 시 작동하는 함수가 변경하는 html  -->
+      	<div id="makyText">:: 비밀번호를 입력해 주세요(대소문자, 숫자, 특수문자 포함) ::</div>
+		<!--비밀번호 확인 입력칸-->
+		<!-- isSame() : 비밀번호가 비밀번호 확인과 일치하는 지를 체크함 -->
+		<!-- ime-mode:disabled - 영문자만 입력 가능하도록 설정  -->
+      <!--이메일 입력칸-->
+      	<div class="row">
+        	<div class="form-group input-group">
+          		<input type="text" class="form-control" name="email" id="exampleFormControlInput1" placeholder="email">
+          		<!--이메일 주소선택-->
+				<span>
+				<select class="form-control" id="exampleFormControlSelect1" name="emailaddress">
+					<option>@gmail.com</option>
+					<option>@naver.com</option>
+					<option>@daum.net</option>
+				</select>
+				</span>  
+    	</div>
+    </div>           
+    </div>  
+      <!--입력을 완료한다음 수정하기 버튼-->
+      <div class="row">     
+        <div class="form-group">
+          <input type="submit" class="btn btn-outline-success" value="회원 정보 수정" id="success">
+        </div>   
+      </div>
+    </div>     
+  </form>
 </body>
 </html>
