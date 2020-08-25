@@ -1,3 +1,8 @@
+<?php
+include "./db/db.php";
+?>
+    
+
 <!DOCTYPE html>
 <html>
 
@@ -17,6 +22,7 @@
     <link rel="stylesheet" href="./css/bootstrap-theme.css">
     <link rel="stylesheet" href="./js/bootstrap.js">
     <link rel="stylesheet" href="./js/npm.js">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
@@ -28,10 +34,39 @@
     <div class="container main_top">
         <div class="row">
             <!--row로 열 만들기-->
-            <div class="col-md-4 box1 text-center">
+            <div class="col-md-2 box1 text-center">
                 <!--그리드로 행 나누기 로고버튼-->
-                <img src="./img/logo_pink.png" alt="" class="">
+                <a href="index.php"><img src="./img/logo_pink.png" alt="" class=""></a>
             </div>
+            <?php
+            if(isset($_SESSION['mem_id'])){
+            ?>    
+                <div class="col-md-2 box1 text-center row">
+                <div class="login_button_wrap">
+                    <a href="./signup/logout.php"><button class="btn login_button">로그아웃</button></a>
+                    <a href="./mypage/mypage.php"><button class="btn login_button2">마이페이지</button></a>
+                </div>
+                <br>
+                <div class="login_text">
+                    <?php
+                    //isset 안에 값이 있는지 없는지 확인하는 식
+                        echo $_SESSION['mem_id']."님 환영합니다.";              
+                    ?>
+                </div>     
+            </div>
+            <?php
+            }
+            else{
+            ?>
+            <div class="col-md-2 box1 text-center row">
+                <div class="login_button_wrap">
+                    <a href="./signup/login.html"><button class="btn login_button">로그인</button></a>
+                    <a href="./signup/signup.php"><button class="btn login_button2">회원가입</button></a>
+                </div> 
+            </div>
+            <?php
+            };
+            ?>
             <!--서치박스 -->
             <div class="col-md-4 box1 text-center">
                 <nav class="navbar navbar-search navbar-light bg-light">
