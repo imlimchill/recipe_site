@@ -91,7 +91,7 @@ if($member['mem_spicy']!= null){
                 <div class="page-header">
                     <h3 class="text-info"><a href ="./mypage.php">마이페이지</a></h3>
                     <br>
-                    <img src="../signup/img/logo.png" alt="" width="200" class="img-responsive left-block">
+                    <img src="../img/logo_huge_pink.png" alt="" width="200" class="img-responsive left-block">
                 </div>
                 <!-- <form class="form-inline"> : 입력폼의 입력 항목이 가로로 표시되게 된다. -->
                 <form class="form-inline" method="get" action="./myfilter.php">
