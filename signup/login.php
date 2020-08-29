@@ -73,11 +73,13 @@
                 </button>
                 <!--구글 로그인 버튼-->
                 <div class="g-signin2" id="google-signin2" onclick="return do_click_google_signin();" data-onsuccess="onSignIn"></div>
+
                 <!--아이디 찾기 / 비밀번호 찾기 링크-->
                 <div class="forget">
                     <a href="id.html">아이디 찾기</a> | <a href="password.html">비밀번호 찾기</a>
                     | <a href="signup.php">회원가입</a>
                 </div>
+
             </form>
         </div>
     </div>
