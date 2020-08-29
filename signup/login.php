@@ -15,7 +15,6 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
         content="521937207453-apclabkc4j6kei9f4nb1b2iolkh7poqe.apps.googleusercontent.com">
-    <!-- <script type="text/javascript" src="../js/test.js"></script> -->
 
     <title>login</title>
     <script>
@@ -73,7 +72,6 @@
                     <font style="vertical-align: inherit;">로그인</font>
                 </button>
                 <!--구글 로그인 버튼-->
-                <!-- <div class="g-signin2" id="ddd" data-onsuccess="onSignIn"></div> -->
                 <div class="g-signin2" id="google-signin2" onclick="return do_click_google_signin();" data-onsuccess="onSignIn"></div>
                 <!--아이디 찾기 / 비밀번호 찾기 링크-->
                 <div class="forget">
