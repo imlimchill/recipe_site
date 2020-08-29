@@ -36,7 +36,7 @@ include "./db/db.php";
             <!--row로 열 만들기-->
             <div class="col-md-2 box1 text-center">
                 <!--그리드로 행 나누기 로고버튼-->
-                <a href="index.php"><img src="./img/logo_pink.png" alt="" class=""></a>
+                <a href="/recipe_site/index.php"><img src="./img/logo_pink.png" alt="" class=""></a>
             </div>
             <?php
             if(isset($_SESSION['mem_id'])){
@@ -69,12 +69,18 @@ include "./db/db.php";
             ?>
             <!--서치박스 -->
             <div class="col-md-4 box1 text-center">
+                <form action="/recipe_site/search/search_result.php" method="get">
                 <nav class="navbar navbar-search navbar-light bg-light">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <select name="catgo">
+                        <option value="content">내용</option>
+                        <option value="mem_id">아이디</option>
+                    </select>
+                    <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn search_button" type="submit" id="main-button"
                         style="color:white; background:#f77e8a">検索</button>
                     <!--버튼에 아이디 추가-->
                 </nav>
+                </form>
             </div>
             <div class="col-md4 btn-group toggle_button switch_button" id="toggle_event_editing">
                 <!--토글 이벤트 아이디 추가-->
