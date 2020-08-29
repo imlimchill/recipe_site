@@ -19,7 +19,9 @@ ul {
   list-style: none;
 }
 /*ul 스타일 초기화*/
-
+.search_padding {
+  padding-top: 34px;
+}
 .box1 {
   align-items: center;
   justify-content: center;
@@ -56,7 +58,10 @@ ul {
   font-size: 90%;
 }
 .form-control {
-  width: 70% !important;
+  width: 70%;
+}
+.search_width {
+  width: 30% !important;
 }
 .btn-info {
   border-style: none;
@@ -130,6 +135,7 @@ ul {
 .login_text {
   color: #fff;
   background: #e04f5d;
+  font-weight: 600;
 }
 /**------------------------------카테고리------------------------------------**/
 .dropdown-menu {
@@ -208,9 +214,13 @@ ul {
   border: none;
   box-shadow: none;
 }
-/**캐러셀 구역**/
+/**---------------------------------캐러셀 구역-----------------------**/
 .pictur_box1 {
   margin-top: 20px;
+}
+.container-wrap {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 /**------------------------------컨텐츠 구역--------------------------**/
 .content_box1 {
