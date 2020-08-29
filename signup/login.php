@@ -18,16 +18,19 @@
 
     <title>login</title>
     <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present. 
+        var google_sign_in = false; // assume
 
-            // save google id, email in db
-            window.location.href="google_login.php?id="+ profile.getName() +"&email=" + profile.getEmail() + "&rank=" + profile.getId();
-            
+        function do_click_google_signin() {
+            google_sign_in = true;
+        }
+
+        function onSignIn( googleUser ) {
+            if ( google_sign_in ) {
+                // Process sign-in
+                var profile = googleUser.getBasicProfile();
+
+                window.location.href="google_login.php?id="+ profile.getName() +"&email=" + profile.getEmail() + "&rank=" + profile.getId();
+            }
         }
     </script>
     <style>
@@ -69,7 +72,7 @@
                     <font style="vertical-align: inherit;">로그인</font>
                 </button>
                 <!--구글 로그인 버튼-->
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="g-signin2" id="google-signin2" onclick="return do_click_google_signin();" data-onsuccess="onSignIn"></div>
 
                 <!--아이디 찾기 / 비밀번호 찾기 링크-->
                 <div class="forget">
