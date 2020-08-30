@@ -18,5 +18,4 @@
         echo "<script>alert('구글로 회원가입 되셨습니다.'); location.href='../index.php';</script>";
     }
 
-
 ?>
