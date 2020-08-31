@@ -16,7 +16,12 @@
     <meta name="google-signin-client_id"
         content="521937207453-apclabkc4j6kei9f4nb1b2iolkh7poqe.apps.googleusercontent.com">
 
+    <link rel="../css/bootstrap.css">
+
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+
     <title>login</title>
+    
     <script>
         var google_sign_in = false; // assume
 
@@ -48,7 +53,7 @@
             <form class="form-signin" action="login_ok.php" method="POST">
                 <!--메일 로고 이미지-->
                 <div>
-                    <img src="./img/logo.png" class="rounded mx-auto d-block" alt="">
+                    <img src="../img/logo_huge_pink.png" class="rounded mx-auto d-block" alt="">
                 </div>
                 <br>
                 <!--아이디 입력칸-->
@@ -69,15 +74,15 @@
                 </div>
                 <!--로그인 버튼-->
                 <button class="btn btn-lg btn-primary btn-block rounded mx-auto d-block" type="submit">
-                    <font style="vertical-align: inherit;">로그인</font>
+                    <font style="vertical-align: inherit;">ログイン</font>
                 </button>
                 <!--구글 로그인 버튼-->
                 <div class="g-signin2" id="google-signin2" onclick="return do_click_google_signin();" data-onsuccess="onSignIn"></div>
 
                 <!--아이디 찾기 / 비밀번호 찾기 링크-->
                 <div class="forget">
-                    <a href="id.html">아이디 찾기</a> | <a href="password.html">비밀번호 찾기</a>
-                    | <a href="signup.php">회원가입</a>
+                    <a href="id.html">IDをお忘れの方</a> | <a href="password.html">パスワードをお忘れの方</a>
+                    | <a href="signup.php">新規登録</a>
                 </div>
 
             </form>
