@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./js/bootstrap.js">
     <link rel="stylesheet" href="./js/bootstrap.js.map">
     <link rel="stylesheet" href="./css/signup2.css">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 	<title>회원가입</title>
 	<!-- 아이디 중복 검사 와 비밀번호 보안성 체크 함수가 담긴 js파일 -->
 	<script src ="../js/checks.js"></script>
@@ -27,7 +28,7 @@
 		<!-- post 방식으로 signup_ok.php 에 보낸다. -->
       <!--메인 로고 이미지-->    
 			<div>
-				<img src="./img/logo.png"  class="img-responsive center-block" alt="">  
+				<img src="../img/logo_huge_pink.png"  class="img-responsive center-block" alt="">  
       </div>
        <!--아이디 입력칸-->
        <div class="row"> 
