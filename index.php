@@ -107,7 +107,7 @@ include "./db/db.php";
         <div class="collapse navbar-collapse" id="collapsibleNavbar" style="align-items:center;">
             <!--네브바 아이디 추가-->
             <ul class="navbar-nav col-md-12">
-                <li class="nav-item col-md-3"> <a class="nav-link disabled" href="./categorypage/category.html">カテゴリー </a> </li>
+                <li class="nav-item col-md-3"> <a class="nav-link disabled" href="./categorypage/category.php">カテゴリー </a> </li>
                 <li class="nav-item dropdown col-md-3">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                         <span class="caret"></span> 放送局
