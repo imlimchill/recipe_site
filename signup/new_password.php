@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/password.css">
 
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+
     <title>password</title >
     <style>
       body {
@@ -26,7 +28,7 @@
         <form class="form-signin" action="./new_password_ok.php?id=<?php echo $id ?>" method="POST">
           <!--메인 로고 이미지-->    
           <div>
-            <img src="./img/logo.png"  class="rounded mx-auto d-block" alt="">  
+            <img src="../img/logo_huge_pink.png"  class="rounded mx-auto d-block" alt="">  
             </div> 
             <br>
             <div class="for">

@@ -22,7 +22,6 @@ include "./db/db.php";
     <link rel="stylesheet" href="./css/bootstrap-theme.css">
     <link rel="stylesheet" href="./js/bootstrap.js">
     <link rel="stylesheet" href="./js/npm.js">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
@@ -36,21 +35,21 @@ include "./db/db.php";
             <!--row로 열 만들기-->
             <div class="col-md-2 box1 text-center">
                 <!--그리드로 행 나누기 로고버튼-->
-                <a href="index.php"><img src="./img/logo_pink.png" alt="" class=""></a>
+                <a href="/recipe_site/index.php"><img src="./img/logo_pink.png" alt="" class=""></a>
             </div>
             <?php
             if(isset($_SESSION['mem_id'])){
             ?>    
                 <div class="col-md-2 box1 text-center row">
                 <div class="login_button_wrap">
-                    <a href="./signup/logout.php"><button class="btn login_button">로그아웃</button></a>
-                    <a href="./mypage/mypage.php"><button class="btn login_button2">마이페이지</button></a>
+                    <a href="./signup/logout.php"><button class="btn login_button">ログアウト</button></a>
+                    <a href="./mypage/mypage.php"><button class="btn login_button2">マイページ</button></a>
                 </div>
                 <br>
                 <div class="login_text">
                     <?php
                     //isset 안에 값이 있는지 없는지 확인하는 식
-                        echo $_SESSION['mem_id']."님 환영합니다.";              
+                        echo $_SESSION['mem_id']."様ようこそ.";              
                     ?>
                 </div>     
             </div>
@@ -60,21 +59,27 @@ include "./db/db.php";
             ?>
             <div class="col-md-2 box1 text-center row">
                 <div class="login_button_wrap">
-                    <a href="./signup/login.html"><button class="btn login_button">로그인</button></a>
-                    <a href="./signup/signup.php"><button class="btn login_button2">회원가입</button></a>
+                    <a href="./signup/login.php"><button class="btn login_button">ログイン</button></a>
+                    <a href="./signup/signup.php"><button class="btn login_button2">新規取得</button></a>
                 </div> 
             </div>
             <?php
             };
             ?>
             <!--서치박스 -->
-            <div class="col-md-4 box1 text-center">
+            <div class="col-md-4 box1 text-center search_padding">
+                <form action="/recipe_site/search/search_result.php" method="get">
                 <nav class="navbar navbar-search navbar-light bg-light">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <select class="form-control search_width text-center" name="catgo">
+                        <option value="content">Content</option>
+                        <option value="mem_id">ID</option>
+                    </select>
+                    <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn search_button" type="submit" id="main-button"
                         style="color:white; background:#f77e8a">検索</button>
                     <!--버튼에 아이디 추가-->
                 </nav>
+                </form>
             </div>
             <div class="col-md4 btn-group toggle_button switch_button" id="toggle_event_editing">
                 <!--토글 이벤트 아이디 추가-->
@@ -102,7 +107,7 @@ include "./db/db.php";
         <div class="collapse navbar-collapse" id="collapsibleNavbar" style="align-items:center;">
             <!--네브바 아이디 추가-->
             <ul class="navbar-nav col-md-12">
-                <li class="nav-item col-md-3"> <a class="nav-link disabled" href="#">カテゴリー </a> </li>
+                <li class="nav-item col-md-3"> <a class="nav-link disabled" href="./categorypage/category.php">カテゴリー </a> </li>
                 <li class="nav-item dropdown col-md-3">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                         <span class="caret"></span> 放送局
@@ -134,7 +139,7 @@ include "./db/db.php";
     </div>
     <br>
     <!--캐러셀구역-->
-    <div class="container">
+    <div class="container container-wrap">
         <div class="row pictur_box1 overflow-hidden">
             <div id="carousel-example-generic" class="carousel slide row">
                 <!--캐러셀 아이디-->
