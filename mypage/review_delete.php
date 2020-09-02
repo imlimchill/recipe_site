@@ -13,7 +13,7 @@
             //삭제후 마이페이지로 이동
          echo "<script>history.back();</script>";
     }        
-        //선택한 후기가 없으면 뒤로 이동
+        //선택한 후기가 없으면 뒤로 이동!
     }else{
         echo "<script>alert('선택된 것이 없습니다.');history.back();</script>";
     }
