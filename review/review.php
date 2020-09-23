@@ -1,3 +1,25 @@
+<?php
+  include "../db/db.php";
+    //입력값 확인
+    if(isset($_GET['page'])){
+      $page = $_GET['page'];
+    }else{
+      $page=1;
+    }
+    $sql2 = mq("select * from po_review order by review_seq");
+    $num = mysqli_num_rows($sql2);
+    $list = 10;
+    $block_num = ceil($page/$list);
+    $start = (($block_num-1)*$list)+1;
+    $end = $start+$list-1;
+    $total = ceil($num/10);
+    if($end>$total){
+      $end=$total;
+  }
+    $block = ceil($total/$list);
+    $start_num = ($page-1) * 10;
+    $sql3 = mq("SELECT review_seq, review_kind, review_name, review_date, mem_id FROM po_review order by review_seq limit $start_num,10");
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -167,55 +189,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr onClick = "location.href='./review_view.php' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
+        <?php
+          $temp = $start_num + 1;
+          while($review = $sql3->fetch_array()) {
+            echo <<< html
+          
+            <tr onClick = "location.href='./review_view.php?seq=$review[0]'">
+              <th scope="row">$temp</th>
+              <td>$review[1]</td>
+              <td>$review[2]</td>
+              <td>$review[3]</td>
+              <td>$review[4]</td>
             </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
-            <tr onClick = "location.href='#' ">
-              <th scope="row">1</th>
-              <td>백선생님</td>
-              <td>계란 후라이 어렵지 않아요</td>
-              <td>2020.8.13</td>
-              <td>산체쓰</td>
-            </tr>
+html;      
+            $temp += 1;
+          }
+            ?>
           </tbody>
         </table>
         <!-- end table -->
@@ -224,19 +213,39 @@
         <nav aria-label="Page navigation example" class="lim_nav text-center">
           <ul class="pagination justify-content-center">
             <!-- disabled is unlock button -->
+            <?php
+            if($page >1){
+              $pre = $page-1;
+            echo<<< html
             <li class="page-item disabled">
-              <a class="page-link" href="#" aria-label="Previous">
+              <a class="page-link" href="?page=$pre" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
+html;
+            }
+            ?>
+          <?php  
+          for($i = $start; $i <= $end; $i++){
+            if($page != $i){
+              echo "<li class='page-item'><a class='page-link' href='?page=$i'>$i</a></li>";
+            }else{
+              echo "<li class='page-item'><a class='page-link' href='#'><b>".$page."</b></a></li>";
+            }
+          }
+          ?>
+          <?php
+            if($page < $total){
+              $next = $page+1;
+              echo<<< html
+                <li class="page-item">
+                  <a class="page-link" href="?page=$next" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+html;
+          }
+            ?>
           </ul>
         </nav>
         <!-- end page button -->

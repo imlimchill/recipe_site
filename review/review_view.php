@@ -1,3 +1,10 @@
+<?php
+  include "../db/db.php";
+  $ddd = $_GET['seq'];
+  $sql_read = mq("SELECT * FROM po_review WHERE review_seq = '".$ddd."'");
+  $read = $sql_read->fetch_array();
+  $sql_img = mq("SELECT review_img FROM po_review_seq WHERE review_seq = '".$ddd."' ");
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,8 +32,8 @@
         text-align: center;
         padding: 10px;
       }
-      p {
-          float: right;
+      .row {
+        text-align: right;
       }
       @media all and (max-width:480px){
         #container {
@@ -35,18 +42,48 @@
           font-size: 10px;
         }
       }
+      #text{
+        text-align: center;
+      }
+      .img{
+        text-align: center;
+      }
     </style>
+    <?php 
+          echo "
+            <script>
+            $( document ).ready( function() {
+                $( '#text' ).html( '<p>".$read[4]."</p>');
+            } );
+            </script>
+          ";
+       ?>
   </head>
   <body>
     <div id="container">
-      <h2>후기 제목</h2>
-      <p>작성자: /</p>
-      <p> 작성 날짜: /</p>
+      <h2><?= $read[3] ?></h2>
+      <div class = "text-right">
+        방송종류: <?= $read[2] ?>
+      </div>
+      <br>
+      <div class = "text-right">
+        작성자: <?= $read[1] ?>
+      </div>
+      <br>
+      <div class = "text-right"> 
+        작성 날짜: <?= $read[5] ?>
+      </div>
       <br>
       <hr>
+      <div class="img">
+        <?php
+          while($review = $sql_img->fetch_array()) {
+            echo "<img class=\"mb-3\" src = \"img/$review[0]\" style =\"height: 350px;\">";
+        } ?>
+      </div>
       <!-- 내용이 들어오는 장소 -->
-      <div>
-
+      <div id="text">
+            
       </div>
 
         
