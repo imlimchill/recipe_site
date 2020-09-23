@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="../js/review_new.js"></script>
 
     <title>new review</title>
     <style>
@@ -71,20 +72,19 @@
   <body>
     <div id="container">
       <h2>후기 작성 페이지</h2>
-      <form action="">
+      <form action="./review_new_ok.php" method="POST"  enctype="multipart/form-data">
         <!-- category + title -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">방송 종류</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
+            <select class="form-control" id="exampleFormControlSelect1" name="list">
+                <option>방송인</option>
+                <option>백종원</option>
+                <option>이특</option>
+                <option>방탄소년단</option>
+                <option>유재석</option>
+            </select>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button">
+          <input type="text" class="form-control" aria-label="Text input with dropdown button" name="title">
         </div>
         <!-- change p + img -->
         <div class="input-group mb-3">
@@ -102,19 +102,19 @@
           <!-- change p + img -->
           <div class="custom-file">
             <label class="custom-file-label" for="inputGroupFile01" id="changePhone">Choose file</label>
-            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" name="inputGroupFile01[]" multiple>
           </div>
           
         </div>
         <!-- contant -->
-        <div class="input-group">
-          <div contentEditable="true" id="textarea"> 
-            <!-- you can put your photos here -->
-            <img src="http://t2.gstatic.com/images?q=tbn:ANd9GcQCze-mfukcuvzKk7Ilj2zQ0CS6PbOkq7ZhRInnNd1Yz3TQzU4e&t=1" />
-          </div>
+        <div class="imgs_wrap text-center col-md-12">
+                            <img id="img"/>
+                        </div> 
+        <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="15"></textarea>
         </div>
         <!-- button -->
-        <button type="button" class="btn btn-outline-success button" id="button">Success</button>
+        <button class="btn btn-outline-success button" id="button">Success</button>
     </form>
     </div>
   </body>
