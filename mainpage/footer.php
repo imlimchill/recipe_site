@@ -8,11 +8,10 @@
     <title>main_page</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="./js/index.js"></script>
-    <script src="./js/vendor/modernizr-custom.js"></script>
-    <link rel="stylesheet" href="../css/mainbar.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script src="../js/vendor/modernizr-custom.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.css">
@@ -24,7 +23,8 @@
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 </head>
 
-<body>
+
+<body style="background :#FFEAE5;">
     <div class="container-fluid footer_wrap">
         <footer class="footer_margin">
             <h3 class="footer_main">開発者</h3>

@@ -1095,7 +1095,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "inherit";
+  font-family: "M PLUS Rounded 1c", Helvetica, Arial, sans-serif; /*폰트변경*/
   font-size: inherit;
   line-height: inherit;
 }
