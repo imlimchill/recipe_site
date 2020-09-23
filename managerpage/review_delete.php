@@ -2,13 +2,13 @@
     include "../db/db.php";
 
     // bring ckeckbox's values
-    if($_POST['recipe']) {
-        for($idx = 0; $idx < count($_POST['recipe']); $idx++) {
+    if($_POST['review']) {
+        for($idx = 0; $idx < count($_POST['review']); $idx++) {
             // put value in array
-            $recipe = $_POST['recipe'];
-            echo $recipe[$idx];
+            $review = $_POST['review'];
+            echo $review[$idx];
             // delect recipe data
-            $sql = mq("DELETE FROM po_recipe WHERE recipe_seq = '".$recipe[$idx]."'");
+            $sql = mq("DELETE FROM po_review WHERE review_seq = '".$review[$idx]."'");
             // back manager page
             echo "<script>history.back();</script>";
         }
