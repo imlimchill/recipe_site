@@ -1,7 +1,7 @@
 <?php
   include "../db/db.php";
   $sql_mem = mq("select mem_id, mem_email, mem_spicy from po_member");
-  $sql_recipe = mq("select recipe_name, mem_id, recipe_seq from po_recipe");
+  $sql_review = mq("select review_name, mem_id, review_seq from po_review");
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,36 +43,36 @@
           <img src="../signup/img//logo.png" alt="" width="200" class="img-responsive left-block" />
         </div>
         <!-- <form class="form-inline"> : 입력폼의 입력 항목이 가로로 표시되게 된다. -->
-        <form class="form-inline" action="./recipe_delete.php" method="POST">
+        <form class="form-inline" action="./review_delete.php" method="POST">
           <fieldset>
             <legend>작성된 후기리스트</legend>
             <table class="table table-bordered">
               <tr class="info">
                 <th>
                   <label>
-                    <input type="checkbox" value="all" class="check_all" name="recipe" />&nbsp;선택
+                    <input type="checkbox" value="all" class="check_all" name="review" />&nbsp;선택
                   </label>
                 </th>
                 <th>제목</th>
                 <th colspan="3">작성자</th>
               </tr>
-              <!-- start recipe list -->
+              <!-- start review list -->
               <?
-                while($recipe = $sql_recipe->fetch_array()) {
+                while($review = $sql_review->fetch_array()) {
                   echo <<< html
                   <tr>
                     <td>
                       <label>
-                        <input type="checkbox" value="$recipe[2]" name="recipe[]" class="check" />
+                        <input type="checkbox" value="$review[2]" name="review[]" class="check" />
                       </label>
                     </td>
-                    <td>$recipe[0]</td>
-                    <td>$recipe[1]</td>
+                    <td>$review[0]</td>
+                    <td>$review[1]</td>
                   </tr>
 html;
                 }
               ?>
-              <!-- end recipe list -->
+              <!-- end review list -->
             </table>
             <div><input type="submit" class="btn btn-info pull-right" value="게시물 삭제"></div>
           </fieldset>
