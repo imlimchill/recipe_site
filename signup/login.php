@@ -34,6 +34,7 @@
                 // Process sign-in
                 var profile = googleUser.getBasicProfile();
 
+
                 window.location.href="google_login.php?id="+ profile.getName() +"&email=" + profile.getEmail() + "&rank=" + profile.getId();
             }
         }
