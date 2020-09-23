@@ -295,9 +295,9 @@ $like = $sql_like->fetch_array();
                                 while($review = $sql_review->fetch_array()) {
                                 echo <<< html
                             
-                                <tr onClick = "location.href='../review/review_view.php?seq=$review[0]' ">
+                                <tr>
                                     <td><label><input type="checkbox" value="$review[0]" name="review[]" class="check" /></label></td>
-                                    <td>$review[1]</td>
+                                    <td onClick = "location.href='../review/review_view.php?seq=$review[0]' ">$review[1]</td>
                                     <td>$review[2]</td>
                                 </tr>
 html;
@@ -327,15 +327,18 @@ html;
                                 $i = 0;
                                 while($i < count($arr)){
                                    $sql_likes = mq("select recipe_seq, recipe_name, recipe_contant from po_recipe where recipe_seq = '".$arr[$i]."'");
-                                   $likes = $sql_likes->fetch_array();
+                                //    $likes = $sql_likes->fetch_array();
                                    $i++;
-                                echo <<< html
-                            <tr onClick = "location.href='../recipe/recipe.php?seq=$likes[0]' ">
-                                <td><label><input type="checkbox" value="$likes[0]" name="likes[]" class="check2" /></label></td>
-                                <td>$likes[1]</td>
-                                <td>$likes[2]</td>
-                            </tr>
+                                   if($likes = $sql_likes->fetch_array()) {
+                                       echo <<< html
+                                   <tr>
+                                       <td><label><input type="checkbox" value="$likes[0]" name="likes[]" class="check2" /></label></td>
+                                       <td onClick = "location.href='../recipe/recipe.php?seq=$likes[0]' ">$likes[1]</td>
+                                       <td>$likes[2]</td>
+                                   </tr>
 html;
+
+                                   }
                                 }
                             ?>
                             <!-- end -->

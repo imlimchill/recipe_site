@@ -3,6 +3,11 @@
     include "../db/db.php";
     // 삭제할 데이터 (실제로는 체크하면 받아짐)
     $like = $_POST['likes'];
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+$userid = $_SESSION['mem_id'];
 
     
 
@@ -14,7 +19,7 @@
      
     for($i=0; $i<count($like); $i++){
 
-        $sql_like = mq("SELECT likes FROM po_member WHERE INSTR(mem_id = 'kang', '1')>0");
+        $sql_like = mq("SELECT likes FROM po_member WHERE INSTR(mem_id = '".$userid."', '1')>0");
         $member = $sql_like->fetch_array();
         // 삭제할 데이터 길이
         $like_le = strlen($like[$i]);
