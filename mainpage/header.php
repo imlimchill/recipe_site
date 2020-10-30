@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include "./db/db.php";
+include "../db/db.php";
 ?>
     
 
@@ -14,7 +14,7 @@ include "./db/db.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>main_page</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
@@ -28,7 +28,7 @@ include "./db/db.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet"> -->
 </head>
 
 <body style="background :#FFEAE5;">
