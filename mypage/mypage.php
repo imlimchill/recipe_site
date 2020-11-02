@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
+include $_SERVER['DOCUMENT_ROOT']."/recipe_site/mainpage/header.php";
 // 서버에 있는 아이디를 $userid 변수에 삽입
 if(!isset($_SESSION)) 
     { 
@@ -53,6 +53,48 @@ if($member['mem_spicy']!= null){
         $j++;
     }
 }
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+  }else{
+    $page=1;
+  }
+  $sql2 = mq("select * from po_review order by review_seq");
+  $num1 = mysqli_num_rows($sql2);
+  $list = 10;
+  $block_num = ceil($page/$list);
+  $start = (($block_num-1)*$list)+1;
+  $end = $start+$list-1;
+  $total = ceil($num1/10);
+  if($end>$total){
+    $end=$total;
+}
+  $block = ceil($total/$list);
+  $start_num = ($page-1) * 10;
+//유저아이디 활용해서 현재 로그인되어있는 아이디의 리뷰 리스트 출력
+$sql_review = mq("select review_seq, review_name, review_cont from po_review where mem_id = '".$userid."'order by review_seq limit $start_num,10");
+
+if(isset($_GET['page1'])){
+    $page1 = $_GET['page1'];
+  }else{
+    $page1=1;
+  }
+  $sql9 = mq("select * from po_recipe order by recipe_seq");
+  $num2 = mysqli_num_rows($sql9);
+  $list1 = 10;
+  $block_num1 = ceil($page1/$list1);
+  $start1 = (($block_num1-1)*$list1)+1;
+  $end1 = $start1+$list1-1;
+  $total1 = ceil($num2/10);
+  if($end1>$total1){
+    $end1=$total1;
+}
+  $block1 = ceil($total1/$list1);
+  $start_num1 = ($page1-1) * 10;
+////유저아이디 활용해서 현재 로그인되어있는 아이디의 좋아요 리스트 출력
+$sql_like = mq("select likes from po_member where mem_id = '".$userid."'");
+$like = $sql_like->fetch_array();
+// 10개씩 나눠야함 > 배열에 저장해서 그에 맞게 
+
 ?>
 
 <!DOCTYPE html>
@@ -62,8 +104,8 @@ if($member['mem_spicy']!= null){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>마이페이지</title>
-    <script src="/recipe_site/js/jquery-3.5.1.min.js"></script>
-    <script src="/recipe_site/js/bootstrap.min.js"></script>
+    <!-- <script src="/recipe_site/js/jquery-3.5.1.min.js"></script>
+    <script src="/recipe_site/js/bootstrap.min.js"></script> -->
     <script>
         // 체크박스를 모두 체크해주는 함수
         $(document).ready(function () {
@@ -90,115 +132,6 @@ if($member['mem_spicy']!= null){
 </head>
 
 <body style="background :#FFEAE5;">
-
-    <div class="container main_top">
-        <div class="row">
-            <!--row로 열 만들기-->
-            <div class="col-md-2 box1 text-center">
-                <!--그리드로 행 나누기 로고버튼-->
-                <a href="/recipe_site/index.php"><img src="../img/logo_pink.png" alt="" class=""></a>
-            </div>
-            <?php
-            if(isset($_SESSION['mem_id'])){
-            ?>    
-                <div class="col-md-2 box1 text-center row">
-                <div class="login_button_wrap">
-                    <a href="../signup/logout.php"><button class="btn login_button">ログアウト</button></a>
-                    <a href="../mypage/mypage.php"><button class="btn login_button2">マイページ</button></a>
-                </div>
-                <br>
-                <div class="login_text">
-                    <?php
-                    //isset 안에 값이 있는지 없는지 확인하는 식
-                        echo $_SESSION['mem_id']."様ようこそ.";              
-                    ?>
-                </div>     
-            </div>
-            <?php
-            }
-            else{
-            ?>
-            <div class="col-md-2 box1 text-center row">
-                <div class="login_button_wrap">
-                    <a href="../signup/login.php"><button class="btn login_button">ログイン</button></a>
-                    <a href="../signup/signup.php"><button class="btn login_button2">新規取得</button></a>
-                </div> 
-            </div>
-            <?php
-            };
-            ?>
-            <!--서치박스 -->
-            <div class="col-md-4 box1 text-center search_padding">
-                <form action="/recipe_site/search/search_result.php" method="get">
-                <nav class="navbar navbar-search navbar-light bg-light">
-                    <select class="form-control search_width text-center" name="catgo">
-                        <option value="content">Content</option>
-                        <option value="mem_id">ID</option>
-                    </select>
-                    <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
-                    <button class="btn search_button" type="submit" id="main-button"
-                        style="color:white; background:#f77e8a">検索</button>
-                    <!--버튼에 아이디 추가-->
-                </nav>
-                </form>
-            </div>
-            <div class="col-md4 btn-group toggle_button switch_button" id="toggle_event_editing">
-                <!--토글 이벤트 아이디 추가-->
-                <button type="button" class="btn btn-info locked_active">KR</button>
-                <button type="button" class="btn btn-default unlocked_inactive">JP</button>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <div class="img-wrap">
-                    <a href="#"><img src="../img/facebook.png" alt=""></a>
-                    <a href="#"><img src="../img/youtube.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-        <!--숨겨진 버튼구역-->
-        <nav class="navbar row navbar_margin">
-            <div class="row category_button">
-                <button class="navbar-toggler hidden-lg hidden-md hidden-sm category_button" type="button"
-                    data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <img src="../img/category.png" alt="">
-                </button>
-            </div>
-        </nav>
-    </div>
-    <!--카테고리구역-->
-    <div class="container-fluid text-center" style="justify-content: center;">
-        <div class="collapse navbar-collapse" id="collapsibleNavbar" style="align-items:center;">
-            <!--네브바 아이디 추가-->
-            <ul class="navbar-nav col-md-12">
-                <li class="nav-item col-md-3"> <a class="nav-link disabled" href="../categorypage/category.php">カテゴリー </a> </li>
-                <li class="nav-item dropdown col-md-3">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                        <span class="caret"></span> 放送局
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">3大天王</a><br>
-                        <a class="dropdown-item" href="#">골목식당</a><br>
-                        <a class="dropdown-item" href="#">맛남의광장 </a><br>
-                        <a class="dropdown-item" href="#">마리텔</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown col-md-3">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                        <span class="caret "></span> 料理
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">韓食</a><br>
-                        <a class="dropdown-item" href="#">和食</a><br>
-                        <a class="dropdown-item" href="#">洋食</a><br>
-                        <a class="dropdown-item" href="#">中食</a>
-                    </div>
-                </li>
-                <li class="nav-item col-md-3"> <a class="nav-link" href="#">後記</a> </li>
-                <!-- <li class="nav-item col-md-20"> <a class="nav-link" href="#">マイページ</a> </li>  마이페이지-->
-
-            </ul>
-        </div>
-        </nav>
-    </div>
-    <br>
     <!-- Bootstrap의 콘텐츠는 항상 class="container"태그 내에 기술한다. 이것에 의해 폭이 자동 조정이 된다.-->
     <div class="container-fluid">
         <!-- 이것은 콘텐츠의 row(가로 열)를 작성하기 위한 컨테이너이다. 그리드 시스템에서는 이 class="row" 태그 안에 표시할 내용을 준비한다. 
@@ -275,7 +208,7 @@ if($member['mem_spicy']!= null){
                 <sapn><a href="./member_modify.php" class="btn btn-info pull-right">정보수정</a></sapn>
                 <sapn><a href="./member_withdrawal.php" class="btn btn-info pull-right">회원탈퇴</a></sapn>
                 <br><br>
-                <form class="form-inline">
+                <form class="form-inline" action="./review_delete.php" method="POST">
                     <fieldset>
                         <legend>작성한 후기리스트</legend>
                         <table class="table table-bordered">
@@ -284,114 +217,108 @@ if($member['mem_spicy']!= null){
                                 <th>제목</th>
                                 <th colspan="3">내용</th>
                             </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우님이 살아계신다</td>
-                            </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우님은 살아계신다</td>
-                            </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우는 살아계신다</td>
-                            </tr>
+                           <!-- start -->
+                           <?php
+                                while($review = $sql_review->fetch_array()) {
+                                echo <<< html
+                            
+                                <tr>
+                                    <td><label><input type="checkbox" value="$review[0]" name="review[]" class="check" /></label></td>
+                                    <td onClick = "location.href='../review/review_view.php?seq=$review[0]' ">$review[1]</td>
+                                    <td>$review[2]</td>
+                                </tr>
+html;
+                                }
+                            ?>
+                            <!-- end -->
                         </table>
                     </fieldset>
+                    <?php
+                    if($page > 1){
+                          //$pre 변수에 $page-1을 해준다.
+                        $pre = $page-1;
+                       //이전 버튼을 클릭할 시에 ($_GET('page')값에 $pre변수를 삽입
+                          echo "<li class='page-item'><a href='?page=$pre&page1=$page1'>이전</a></li>";
+                          }
+                    //만약에 현재 블록이 블록의 총 갯수 미만일 경우
+                    if($page < $total){
+                    //$next 변수에 $page변수에 1을 더한 값을 삽입
+                    $next = $page+1;
+                    // 다음 버튼을 클릭할 시 ($_GET('page')값에 $next 변수를 삽입
+                        echo "<li class='page-item'><a href='?page=$next&page1=$page1'>다음</a></li>";
+                            }
+                    ?>
+                <sapn><input type="submit" class="btn btn-info pull-right" value="게시물 삭제"></sapn>
                 </form>
-                <sapn><a href="" class="btn btn-info pull-right">게시물 삭제</a></sapn>
                 <br><br>
-                <form class="form-inline">
+                <form class="form-inline" action="./likes_delete.php" method="POST">
                     <fieldset>
                         <legend>좋아요 리스트</legend>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <tr class="info">
                                 <th><label><input type="checkbox" value="all" class="check_all2">&nbsp;선택</label></th>
                                 <th>제목</th>
                                 <th colspan="3">내용</th>
                             </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check2" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우님이 살아계신다</td>
-                            </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check2" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우님은 살아계신다</td>
-                            </tr>
-                            <tr>
-                                <td><label><input type="checkbox" value="num" class="check2" /></label></td>
-                                <td>오현우</td>
-                                <td>오현우는 살아계신다</td>
-                            </tr>
+                            <!-- start -->
+                            <?php
+                                $arr = explode(',', $like[0]);
+                                // var_dump($arr);
+                                $start_count = $start_num1;
+                                for($i=0; $i<10; $i++){
+                                    // 배열의 자리표가 스타트부터 10개씩 추려력 > 새로운 배열에 10개를 저장
+                                    if(isset($arr[$start_count])) {
+                                        $arr_page[$i] = $arr[$start_count];
+                                        $start_count = $start_count + 1;
+                                    }
+                                }
+                                $i = 0;
+                                while($i < 10){
+
+                                    if(isset($arr_page[$i])) {
+                                        $sql_likes = mq("select recipe_seq, recipe_name, recipe_contant from po_recipe where recipe_seq = '".$arr_page[$i]."' ");
+                                        // $i++;
+                                        if($likes = $sql_likes->fetch_array()) {
+                                            echo <<< html
+                                        <tr>
+                                            <td><label><input type="checkbox" value="$likes[0]" name="likes[]" class="check2" /></label></td>
+                                            <td onClick = "location.href='../recipe/recipe.php?seq=$likes[0]' ">$likes[1]</td>
+                                            <td>$likes[2]</td>
+                                        </tr>
+html;
+                                        }
+                                   } 
+                                   $i++;
+                                }
+                            ?>
+                            <!-- end -->
                         </table>
                     </fieldset>
+                    <?php
+                    if($page1 > 1){
+                          //$pre 변수에 $page-1을 해준다.
+                        $pre1 = $page1-1;
+                       //이전 버튼을 클릭할 시에 ($_GET('page')값에 $pre변수를 삽입
+                          echo "<li class='page-item'><a href='?page=$page&page1=$pre1'>이전</a></li>";
+                          }
+                    //만약에 현재 블록이 블록의 총 갯수 미만일 경우
+                    if($page1 < $total1){
+                    //$next 변수에 $page변수에 1을 더한 s값을 삽입
+                    $next1 = $page1+1;
+                    // 다음 버튼을 클릭할 시 ($_GET('page')값에 $next 변수를 삽입
+                        echo "<li class='page-item'><a href='?page=$page&page1=$next1'>다음</a></li>";
+                            }
+                    ?>
+                <!--<sapn><a href="" class="btn btn-info pull-right">좋아요 취소</a></sapn>-->
+                <sapn><input type="submit" class="btn btn-info pull-right" value="좋아요 취소"></sapn>
                 </form>
-                <sapn><a href="" class="btn btn-info pull-right">좋아요 취소</a></sapn>
                 <br><br><br>
                 <div class="text-center"><a href="" class="btn btn-info">홈으로</a></div>
             </div>
         </div>
     </div>
-    <div class="container-fluid footer_wrap">
-        <footer class="footer_margin">
-            <h3 class="footer_main">開発者</h3>
-            <div class="col-md-5">
-                <div class="text-center footer_box1"><a href="https://github.com/imlimchill"
-                        style="font-weight: 900; color: white; font-size: 1.3em;"><img src="../img/github-logo.png"
-                            alt="">&nbsp;林彩浄(イム・チェジョン
-                        &nbsp;|&nbsp;
-                        チーム・リーダー)</a>
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                </div>
-                <div class="text-center footer_box2"><a href="https://github.com/kanghr1685"
-                        style="font-weight: 900; color: white; font-size: 1.3em;"><img src="../img/github-logo.png"
-                            alt="">&nbsp;姜和林(カン・ファリム)</a>
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                </div>
-            </div>
-            <div class="col-md-2 text-center"><img src="../img/main_git.png" alt="">
-                <div class=" text-center git_address">チームGitアドレス</div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="text-center footer_box2"><a href="https://github.com/lienero"
-                        style="font-weight: 900; color: white; font-size: 1.3em;"><img src="../img/github-logo.png"
-                            alt="">&nbsp;李京珉(イ・ギョンミン)</a>
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                </div>
-                <div class="text-center footer_box1"><a href="https://github.com/hyunwooOh1230"
-                        style="font-weight: 900; color: white; font-size: 1.3em;"><img src="../img/github-logo.png"
-                            alt="">&nbsp;吳賢祐(オ・ヒョンウ)</a>
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                    <br>林彩浄(イム・チェジョン |
-                    チーム・リーダー)
-                </div>
-            </div>
-        </footer>
-    </div>
+    <!-- footer -->
+    <?php include "../mainpage/footer.php"; ?>
 </body>
 
 </html>
