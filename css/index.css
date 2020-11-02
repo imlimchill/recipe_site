@@ -231,7 +231,7 @@ ul {
   justify-content: center;
 }
 .content_box1_title_content {
-  padding: 0 0 2% 7%;
+  padding: 0 0 2% 3%;
   font-size: 2em;
 }
 
@@ -243,6 +243,24 @@ ul {
 .recipe_recommendation_box {
   padding: 0 !important;
 }
+.board_new {
+  font-size: 18px;
+}
+.board_button {
+  font-size: 0.5em !important;
+  background: #e04f5d;
+  color: white;
+  border-radius: 3px;
+  margin-left: 78%;
+}
+.board_button2 {
+  font-size: 0.5em !important;
+  background: #e04f5d;
+  color: white;
+  border-radius: 3px;
+  margin-left: 72%;
+}
+
 /**------------------------------푸터구역------------------------------------**/
 .footer_main {
   text-align: center;
