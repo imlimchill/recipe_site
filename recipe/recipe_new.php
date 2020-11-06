@@ -131,7 +131,7 @@
                             <input type="radio" class="" value = 2 name="spicy" required>매운맛 
                             </span>
                             <span>     
-                            <input type="radio" class="" value = 3 name="spicy" required>경민이
+                            <input type="radio" class="" value = 3 name="spicy" required>그냥 죽여라냥
                             </label>
                             </span>
                             </div>
