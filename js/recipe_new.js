@@ -22,7 +22,8 @@ function addForm(){
     str+="<div class=\"input-group-prepend\">";
     str+="<span class=\"input-group-text\">First food</span>";
     str+="</div>";                
-    str+="<input type=\"text\" aria-label=\"food\" name=\"food[]\" class=\"form-control\">";
+    str+="<input type=\"text\" aria-label=\"food\" class=\"form-control\">";
+    str+="<input type=\"text\" aria-label=\"how\" class=\"form-control\">";
     str+="</div>";
     str+="</div>";
     // 추가할 폼(에 들어갈 HTML)                
@@ -108,7 +109,7 @@ function addFormRecipe(count){
     str+="<div class=\"input-group-prepend\">";
     str+="<span class=\"input-group-text\" id=\"explan\" width=\"330px\">With textarea</span>";
     str+="</div>";
-    str+="<textarea class=\"form-control\" id=\"textimg\" aria-label=\"With textarea\" name=\"sub_img[]\"></textarea>";
+    str+="<textarea class=\"form-control\" id=\"textimg\" aria-label=\"With textarea\"></textarea>";
     str+="</div>"; 
 
     str2 = str;

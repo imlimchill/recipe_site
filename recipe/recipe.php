@@ -1,16 +1,10 @@
 <?php
     include "../db/db.php";
-    include "../signup/method/password.php";
-    $security_seq = $_GET['recipe_seq'];
-    $rec_seq = mq("SELECT recipe_seq FROM po_recipe");
-    while($re_seq = $rec_seq->fetch_array()) {
-        if(password_verify($re_seq[0], $security_seq)) {
-            $seq_check = $re_seq[0];
-        }
-    }
+    $seq_check = $_GET['recipe_seq'];
     $recipe_sql = mq("SELECT * FROM po_recipe where  recipe_seq='".$seq_check."'");
     $recipe = $recipe_sql->fetch_array();
     $recipe_img =  mq("SELECT * FROM po_recipe_img where  recipe_seq='".$seq_check."'");
+    $recipe_cont = $recipe_img->fetch_array();
 ?>
 <!doctype html>
 <html lang="en">
@@ -46,7 +40,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-    <script src="../js/recipe_new.js"></script>
     <title>repice</title>
 </head>
 
@@ -194,30 +187,11 @@
                     </div>
                 </div>
                 <!--매운맛 단계 표시-->
-                
                 <div class="col-md-3">
                     <div class="thumbnail text-center">
                         <img src="../img/Fire.png" class="icon">
                         <div class="caption">
-                        <h6>
-                            <?php
-                            $spicy=$recipe["recipe_spicy"];
-                            switch($spicy){
-                                case 0:
-                                echo "안매움";
-                                break;
-                                case 1:
-                                echo "조금 매움";
-                                break;
-                                case 2:
-                                echo "매움";
-                                break;
-                                case 3:
-                                echo "그냥 죽여라냥";
-                                break;                                
-                            }
-                            ?>
-                        </h6>
+                            <h6>그냥 죽어라냥</h6>
                         </div>
                     </div>
                 </div>
@@ -249,71 +223,76 @@
                     <div class="ready_ingre3 text-center">
                         <ul class="col-md-6">
                             <b class="ready_ingre3">[재료]</b>
-                            <?php
-                            $food_array = $recipe["recipe_food"];
-                            $food_array2 = explode(",", $food_array); 
-                            $food_count = count($food_array2);
-                            for($i=0; $i<$food_count; $i++)
-                            {
-                                if($food_array2[$i]!=""){
-                            ?>    
-                            <li>
-                            <?php
-                                echo ($food_array2[$i])."<br/>";
-                            ?>
-                            <hr>
+                            <li>토마토 같은거<span class="ingre_unit">1개</span>
                             </li>
-                            <?php
-                                }
-                            }
-                            ?>
-                            
-    
+                            <hr>
+                            <li>스팸 <span class="ingre_unit">1개</span>
+                            </li>
+                            <hr>
+                            <li>라면 <span class="ingre_unit">진라면</span>
+                            </li>
+                            <hr>
+                            <li>당근 <span class="ingre_unit">반개</span>
+                            </li>
+                            <hr>
+                            <li>청양고추 <span class="ingre_unit">1개</span>
+                            </li>
                         </ul>
-
+                        <!--양념 설명-->
+                        <ul class="col-md-6">
+                            <b class="ready_ingre3">[양념]</b>
+                            <li>토마토소스 <span class="ingre_unit">4T</span>
+                            </li>
+                            <hr>
+                        </ul>
                     </div>
                 </div>
             </div>
             <!--동영상 -->
-            <?php
-            if($recipe["recipe_url"]!= "")
-            {?>
-             <div class="row flex_box">
+            <div class="row flex_box">
                 <div class="col-md-7 text-center">
                     <h3>동영상</h3>
-                  
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src=<?php echo $recipe["recipe_url"]?>>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=GP8_7D5eM6A">
                         </iframe>
                     </div>
-                    
                 </div>
             </div>
-            <?php
-            }
-            ?>
-           
-            
     </div>
     <br>
     <!--레시피 설명-->
-    <?php
-    while($recipe_cont = $recipe_img->fetch_array()){
-        ?>
-    <div class="row">
-        <div class="recipe text-right">
-            <div class="col-md-6"><?php echo $recipe_cont["img_cont"]?>
+    <div class="row flex_box">
+        <div class="recipe">
+            <div class="col-md-6">나의 피땀 눈물을 넣는다 과연 효과는
             </div>
             <!--레시피 이미지-->
-            <div class="col-md-6" style="width:250px; height:150px">
-                <img src="http://localhost/recipe_site/img/<?php echo $recipe_cont["recipe_img"];?> "style="width:250px; height:150px">
+            <div class="col-md-6 text-center">
+                <img src="https://via.placeholder.com/250x150">
             </div>
         </div>
     </div>
-    <?php
-    }
-    ?>
-    
+    <br>
+    <div class="row flex_box">
+        <div class="recipe">
+            <div class="col-md-6">나의 피땀 눈물을 넣는다 과연 효과는
+            </div>
+            <!--레시피 이미지-->
+            <div class="col-md-6 text-center">
+                <img src="https://via.placeholder.com/250x150">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row flex_box">
+        <div class="recipe">
+            <div class="col-md-6">나의 피땀 눈물을 넣는다 과연 효과는
+            </div>
+            <!--레시피 이미지-->
+            <div class="col-md-6 text-center">
+                <img src="https://via.placeholder.com/250x150">
+            </div>
+        </div>
+    </div>
     <br>
     <!--댓글 쓰기-->
     <div class="container">
