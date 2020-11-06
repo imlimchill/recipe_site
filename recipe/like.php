@@ -1,6 +1,6 @@
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/recipe_site_0825/db/db.php";
+include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
                         if(!isset($_SESSION)) 
                         { 
                             session_start(); 
@@ -33,7 +33,7 @@ include $_SERVER['DOCUMENT_ROOT']."/recipe_site_0825/db/db.php";
                             if($member['likes']=="" || $like_array==""){
                                 $sql = mq("update po_member set likes ='". $recipe_id."'where mem_id='".$userid."'");
                                 $sql_like = mq("update po_recipe set recipe_likes = $like_count where recipe_seq = '".$recipe_id."'");
-                                echo $like_count; 
+                                echo 
                                         "<script>
                                         alert('「いいね」しました。');
                                         history.back();
