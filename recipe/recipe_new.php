@@ -111,7 +111,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">유튜브 입력</span>
                         </div>
-                        <input type="text" class="form-control" name="youtube_url" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control" name="youtube_url" id="basic-url aria-describedby="basic-addon3">
                     </div>
                     <!-- recipe 스파이시 -->
                     <div class="input-group-prepend mb-3">
@@ -122,16 +122,16 @@
                             <div class="radio_margin">
                             <span>      
                             &nbsp;
-                            <input type="radio" class="center-block" value = 0 name="spicy" >안 매운맛
+                            <input type="radio" class="center-block" value = 0 name="spicy" required>안 매운맛
                             </span>
                             <span>      
-                            <input type="radio" class="" value = 1 name="spicy" >조금 매운맛 
+                            <input type="radio" class="" value = 1 name="spicy" required>조금 매운맛 
                             </span>
                             <span>      
-                            <input type="radio" class="" value = 2 name="spicy" >매운맛 
+                            <input type="radio" class="" value = 2 name="spicy" required>매운맛 
                             </span>
                             <span>     
-                            <input type="radio" class="" value = 3 name="spicy" >경민이
+                            <input type="radio" class="" value = 3 name="spicy" required>경민이
                             </label>
                             </span>
                             </div>
@@ -200,7 +200,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">First food</span>
                     </div>
-                    <input type="text" aria-label="food" class="form-control" name="food_0" required>
+                    <input type="text" aria-label="food" class="form-control" name="food[]" required>
                 </div>
             </div>
                 <input type="hidden" name="count" value="1">
