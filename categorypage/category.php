@@ -2,6 +2,8 @@
 <html lang="en">
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
+include "../signup/method/password.php";
+
 ?>
     
 
@@ -257,7 +259,9 @@ include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
                         ?>
                     
                 <div class="col-md-3 col-sm-3">
-                    <a href="table.php?recipe_seq=<?php echo $recipe_info["recipe_seq"];?>"><img class="card-img-top img-responsive img-rounded" src="http://localhost/recipe_site/img/<?php echo $recipe_info["img"];?>" style="width: 212px; height: 160px;" text-center></a>
+                    <a href="../recipe/recipe.php?recipe_seq=<?php 
+                    $security_seq = password_hash($recipe_info["recipe_seq"], PASSWORD_DEFAULT);
+                    echo $security_seq;?>"><img class="card-img-top img-responsive img-rounded" src="http://localhost/recipe_site/img/<?php echo $recipe_info["img"];?>" style="width: 212px; height: 160px;" text-center></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="#"><?php echo $recipe_info["recipe_name"];?>&nbsp;</a>
