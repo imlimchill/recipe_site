@@ -267,7 +267,7 @@ include "../signup/method/password.php";
                             <a href="#"><?php echo $recipe_info["recipe_name"];?>&nbsp;</a>
                         </h4>
                         <h5>좋아요 수:<td><?php echo $recipe_info["recipe_likes"];?>&nbsp;</td></h5>
-                        <p class="card-text">작성자: <?php echo $recipe_info["recipe_name"];?>&nbsp;</p>
+                        <p class="card-text">작성자: <?php echo $recipe_info["mem_id"];?>&nbsp;</p>
                     </div>
                 </div>
                 <?php
