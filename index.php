@@ -176,7 +176,16 @@ include "signup/method/password.php";
             <div class="content_box1_title">
                 <div class="content_box1_title_content row">最新レシピ
                     <span class="">
-                        <button class="board_new btn board_button"><a href="./recipe/recipe_new.php" style="color:white;">作成</a></button>
+                    <?php
+                        if(isset($_SESSION['mem_id'])){
+                        ?> 
+                        <button class="board_new btn board_button">
+                           
+                        <a href="./recipe/recipe_new.php" style="color:white;">作成</a>
+                        </button>
+                        <?php
+                         };
+                    ?>
                     </span>
                 </div>
                 <?php
@@ -192,7 +201,7 @@ include "signup/method/password.php";
                             <a href="#"><?php echo $recipe_info["recipe_name"];?>&nbsp;</a>
                         </h4>
                         <h5>좋아요 수:<td><?php echo $recipe_info["recipe_likes"];?>&nbsp;</td></h5>
-                        <p class="card-text">작성자: <?php echo $recipe_info["recipe_name"];?>&nbsp;</p>
+                        <p class="card-text">작성자: <?php echo $recipe_info["mem_id"];?>&nbsp;</p>
                     </div>
                 </div>
                 <?php
@@ -209,7 +218,13 @@ include "signup/method/password.php";
             <div class="content_box1_title">
                 <div class="content_box1_title_content row">おすすめレシピ
                 <span class="">
+                        <?php
+                        if(isset($_SESSION['mem_id'])){
+                        ?>
                         <button class="board_new btn board_button2"><a href="./recipe/recipe_new.php" style="color:white;">作成</a></button>
+                        <?php
+                        }
+                        ?>
                 </span>
                 </div>
                 <?php
