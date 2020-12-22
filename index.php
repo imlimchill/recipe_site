@@ -1,5 +1,6 @@
 <?php
-include "./db/db.php";
+include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
+include "signup/method/password.php";
 ?>
     
 
@@ -130,7 +131,7 @@ include "./db/db.php";
                         <a class="dropdown-item" href="#">中食</a>
                     </div>
                 </li>
-                <li class="nav-item col-md-3"> <a class="nav-link" href="#">後記</a> </li>
+                <li class="nav-item col-md-3"> <a class="nav-link" href="../recipe_site/review/review.php">後記</a> </li>
                 <!-- <li class="nav-item col-md-20"> <a class="nav-link" href="#">マイページ</a> </li>  마이페이지-->
 
             </ul>
@@ -173,52 +174,39 @@ include "./db/db.php";
     <div class="container recipe_recommendation_box">
         <div class="row content_box1 img-fluid">
             <div class="content_box1_title">
-                <div class="content_box1_title_content row">オ·ヒョヌ</div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <a href="#"><img class="card-img-top img-responsiveimg-rounded" src="./img/exam1.jpg " alt=""></a>
+                <div class="content_box1_title_content row">最新レシピ
+                    <span class="">
+                    <?php
+                        if(isset($_SESSION['mem_id'])){
+                        ?> 
+                        <button class="board_new btn board_button">
+                           
+                        <a href="./recipe/recipe_new.php" style="color:white;">作成</a>
+                        </button>
+                        <?php
+                         };
+                    ?>
+                    </span>
+                </div>
+                <?php
+                $sql3 = mq("select * from po_recipe order by recipe_date desc limit 0,4");
+                    while($recipe_info = $sql3->fetch_array()){
+                        
+                        ?>
+                    
+                <div class="col-md-3 col-sm-3">
+                    <a href="../recipe_site/recipe/recipe.php?recipe_seq=<?php echo $security_seq=password_hash($recipe_info["recipe_seq"], PASSWORD_DEFAULT);?>"><img class="card-img-top img-responsive img-rounded" src="http://localhost/recipe_site/img/<?php echo $recipe_info["img"];?>" style="width: 212px; height: 160px;"></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">된장찌개</a>
+                            <a href="#"><?php echo $recipe_info["recipe_name"];?>&nbsp;</a>
                         </h4>
-                        <h5>食べなさい</h5>
-                        <p class="card-text">이맛에 반해요</p>
+                        <h5>좋아요 수:<td><?php echo $recipe_info["recipe_likes"];?>&nbsp;</td></h5>
+                        <p class="card-text">작성자: <?php echo $recipe_info["mem_id"];?>&nbsp;</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <a href="#"><img class="card-img-top img-responsive img-rounded" src="./img/exam1.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">된장찌개</a>
-                        </h4>
-                        <h5>드셔보세요</h5>
-                        <p class="card-text">이맛에 반해요</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top img-responsive img-rounded" src="./img/exam1.jpg"
-                                alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">된장찌개</a>
-                            </h4>
-                            <h5>드셔보세요</h5>
-                            <p class="card-text">이맛에 반해요</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top img-responsive  img-rounded" src="./img/exam1.jpg"
-                                alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">된장찌개</a>
-                            </h4>
-                            <h5>드셔보세요</h5>
-                            <p class="card-text">이맛에 반해요</p>
-                        </div>
-                    </div>
+                <?php
+                    }
+                 ?> 
                 </div>
             </div>
         </div>
@@ -228,51 +216,35 @@ include "./db/db.php";
     <div class="container review_box">
         <div class="row content_box1 img-fluid">
             <div class="content_box1_title">
-                <div class="content_box1_title_content row">한번 드셔보세요</div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <a href="#"><img class="card-img-top img-responsiveimg-rounded" src="./img/exam1.jpg " alt=""></a>
+                <div class="content_box1_title_content row">おすすめレシピ
+                <span class="">
+                        <?php
+                        if(isset($_SESSION['mem_id'])){
+                        ?>
+                        <button class="board_new btn board_button2"><a href="./recipe/recipe_new.php" style="color:white;">作成</a></button>
+                        <?php
+                        }
+                        ?>
+                </span>
+                </div>
+                <?php
+                $sql3 = mq("select * from po_recipe order by recipe_likes desc limit 0,4");
+                    while($recipe_info = $sql3->fetch_array()){
+                        ?>
+                    
+                <div class="col-md-3 col-sm-3">
+                    <a href="recipe/recipe.php?recipe_seq=<?php echo $recipe_info["recipe_seq"];?>"><img class="card-img-top img-responsive img-rounded" src="http://localhost/recipe_site/img/<?php echo $recipe_info["img"];?>" style="width: 212px; height: 160px;" text-center></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">된장찌개</a>
+                            <a href="#"><?php echo $recipe_info["recipe_name"];?>&nbsp;</a>
                         </h4>
-                        <h5>드셔보세요</h5>
-                        <p class="card-text">이맛에 반해요</p>
+                        <h5>좋아요 수:<td><?php echo $recipe_info["recipe_likes"];?>&nbsp;</td></h5>
+                        <p class="card-text">작성자: <?php echo $recipe_info["recipe_name"];?>&nbsp;</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <a href="#"><img class="card-img-top img-responsive img-rounded" src="./img/exam1.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">된장찌개</a>
-                        </h4>
-                        <h5>드셔보세요</h5>
-                        <p class="card-text">이맛에 반해요</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top img-responsive img-rounded" src="./img/exam1.jpg"
-                                alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">된장찌개</a>
-                            </h4>
-                            <h5>드셔보세요</h5>
-                            <p class="card-text">이맛에 반해요</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-3">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top img-responsive  img-rounded" src="./img/exam1.jpg"
-                                alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">된장찌개</a>
-                            </h4>
-                            <h5>드셔보세요</h5>
-                            <p class="card-text">이맛에 반해요</p>
-                        </div>
+                <?php
+                    }
+                 ?> 
                     </div>
                 </div>
             </div>

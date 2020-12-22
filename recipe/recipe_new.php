@@ -65,28 +65,34 @@
             margin-bottom: 33px;
             float: right;
         }
+        .radio_margin{
+             margin-top:1.5%;
+        }
+        .checkbox_margin{
+            margin-top:1%;
+        }
     </style>
 </head>
 
 <body>
     <div id="container">
         <h2>레시피 작성 페이지</h2>
-        <form name="baseForm" action="" method="post">
+        <form name="baseForm" action="recipe_commit.php" method="post" enctype="multipart/form-data">
             <!-- first row -->
             <div class="row">
                 <!-- recipe name -->
                 <div class="input-group col-md-6 group">
-                    <div class="input-group-prepend">
+                    <div class="input-group-prepend" >
                         <span class="input-group-text">Recipe name</span>
                     </div>
-                    <input type="text" aria-label="Recipe name" class="form-control">
+                    <input type="text" aria-label="Recipe name" class="form-control" name="recipe_name" required>
                 </div>
                 <!-- main image -->
                 <div class="col-md-6" style="float-left">
                     <div class="input-group mb-3">
                         <div class="custom-file">
                             <label class="custom-file-label" for="inputGroupFile02">파일</label>
-                            <input type="file" class="custom-file-input" name="imgMain" id="imgMain">
+                            <input type="file" class="custom-file-input" name="imgMain" id="imgMain" >
                         </div>
                     </div>
                 </div>
@@ -99,24 +105,37 @@
                     <div class="input-group-prepend mb-3">
                         <span class="input-group-text" id="textarea">With textarea</span>
                     </div>
-                    <textarea class="form-control mb-3" aria-label="With textarea"></textarea>
+                    <textarea class="form-control mb-3" aria-label="With textarea" name="textarea" required></textarea>
                     <!-- recipe contant -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">유튜브 입력</span>
                         </div>
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control" name="youtube_url" id="basic-url aria-describedby="basic-addon3">
                     </div>
                     <!-- recipe 스파이시 -->
                     <div class="input-group-prepend mb-3">
                         <span class="input-group-text" id="basic-addon3">매운맛 선택</span>
                     </div>
                     <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-secondary">1</button>
-                            <button type="button" class="btn btn-secondary">2</button>
-                            <button type="button" class="btn btn-secondary">3</button>
-                            <button type="button" class="btn btn-secondary">4</button>
+                        <div class="btn-group mr-2 text-center" role="group" aria-label="First group">
+                            <div class="radio_margin">
+                            <span>      
+                            &nbsp;
+                            <input type="radio" class="center-block" value = 0 name="spicy" required>안 매운맛
+                            </span>
+                            <span>      
+                            <input type="radio" class="" value = 1 name="spicy" required>조금 매운맛 
+                            </span>
+                            <span>      
+                            <input type="radio" class="" value = 2 name="spicy" required>매운맛 
+                            </span>
+                            <span>     
+                            <input type="radio" class="" value = 3 name="spicy" required>그냥 죽여라냥
+                            </label>
+                            </span>
+                            </div>
+                            
                         </div>
                     </div>
                 </div> 
@@ -132,37 +151,59 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Options</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select class="custom-select" id="inputGroupSelect01" name="human" required>
                         <option selected>인물</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <select class="custom-select" id="inputGroupSelect02">
+                    <select class="custom-select" id="inputGroupSelect02" name="tv_show" required>
                         <option selected>방송</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <select class="custom-select" id="inputGroupSelect03">
-                        <option selected>테마</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
                 </div>
             </div>
+            <div class="input-group-prepend mb-3">
+                        <span class="input-group-text" id="basic-addon3">재료 선택</span>
+                        <div class="checkbox_margin">
+                        <span role="toolbar" aria-label="Toolbar with button groups" class="align-center">
+                        &nbsp;&nbsp;        
+                            <label>
+                                <input type="checkbox" name="pork" value="pork">돼지고기&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input type="checkbox" name="beef" value="beef">소고기&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input type="checkbox" name="chicken" value="chicken">닭고기&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input type="checkbox" name="vegetable" value="vegetable">채소&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input type="checkbox" name="fruit" value="fruit">과일&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input type="checkbox" name="seasoning" value="seasoning">조미료&nbsp;&nbsp;
+                            </label>
+                    </span>
+                    </div>
+
+            </div>
+                    
+                    
             <div class="row">
                 <!-- food -->
                 <div class="input-group col-md-12 mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">First food</span>
                     </div>
-                    <input type="text" aria-label="food" class="form-control">
-                    <input type="text" aria-label="how" class="form-control">
+                    <input type="text" aria-label="food" class="form-control" name="food[]" required>
                 </div>
             </div>
-                <input type="hidden" name="count" value="0">
+                <input type="hidden" name="count" value="1">
                 <!-- 폼을 삽입할 DIV -->
                 <div id="addedFormDiv"></div>
             <div class="row">
@@ -174,8 +215,9 @@
 
             <div class="input-group mb-3">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="input_imgs" aria-describedby="inputGroupFileAddon03" multiple>
-                    <label class="custom-file-label" for="input_imgs">Choose file</label>
+                    <input type="file" name ='recipe_imgs[]'
+                    class="custom-file-input" id="input_imgs" aria-describedby="inputGroupFileAddon03" multiple required>
+                    <label class="custom-file-label" for="input_imgs" name="choose_file">Choose file</label>
                 </div>
             </div>
             
@@ -201,7 +243,7 @@
             </div>
 
             <!-- button -->
-            <input class="btn btn-outline-danger" value="등록하기" id="buttonNew">
+            <input type="submit" class="btn btn-outline-danger" value="등록하기" id="buttonNew" >
         </form>
     </div>
 </body>

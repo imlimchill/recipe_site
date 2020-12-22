@@ -60,3 +60,17 @@
   color: #f45a6c !important;
   background: white !important;
 }
+.cg_btn {
+  border-style: none !important;
+  width: 100%;
+  background-color: #ff6073f8;
+  height: 37px;
+  color: #fff;
+  border: #f45a6c solid 1px !important;
+}
+input[type="submit"] {
+  -webkit-appearance: none !important;
+}
+.search {
+  padding: 0 !important;
+}

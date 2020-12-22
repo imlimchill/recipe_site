@@ -21,6 +21,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <script>
+        // 체크박스를 모두 체크해주는 함수
+        $(document).ready(function () {
+            $(".check_all").click(function () {
+                $(".check").prop("checked", this.checked);
+            });
+            $(".check_all2").click(function () {
+                $(".check2").prop("checked", this.checked);
+            });
+        });
+    </script>
 </head>
 
 
