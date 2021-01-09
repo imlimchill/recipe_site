@@ -66,7 +66,7 @@
                 <th colspan="3">작성자</th>
               </tr>
               <!-- start review list -->
-              <?php
+              <?
                 while($review = $sql_review->fetch_array()) {
                   echo <<< html
                   <tr>
