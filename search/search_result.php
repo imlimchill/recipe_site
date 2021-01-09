@@ -1,7 +1,7 @@
 <?php 
-    include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
+	include $_SERVER['DOCUMENT_ROOT']."/recipe_site/db/db.php";
     // 만들어 놓은 헤더 (홈, 프로필, 레시피, 게시판) 삽입(include)
-	include '../mainpage/header.html';
+	include '../mainpage/header.php';
 	// 서버에 있는 아이디를 $userid변수에 삽입
 	$userid = $_SESSION['mem_id'];
 ?>

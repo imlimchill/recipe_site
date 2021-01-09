@@ -10,6 +10,9 @@
     $member = $sql->fetch_array();
 
     if ($member) {
+        // save id information in session
+        $_SESSION['mem_id'] = $id;
+
         // move to index.php
         echo "<script>alert('로그인 되셨습니다.'); location.href='../index.php';</script>";
     } else {

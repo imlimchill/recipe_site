@@ -30,7 +30,7 @@
 					// alert() :  alert()은 경고창(alert box)를 나타내 주는 스크립트입니다.
 
 					//회원가입이 완료되었을 시 login.html로  
-					echo "<script>alert('회원가입이 완료되었습니다.'); location.href='./login.html';</script>";
+					echo "<script>alert('회원가입이 완료되었습니다.'); location.href='./login.php';</script>";
 
 				} else {
 					// history.back() : 현재 페이지의 한단계 이전 페이지로 이동
