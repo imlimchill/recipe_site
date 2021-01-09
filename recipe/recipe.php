@@ -47,6 +47,42 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
     <script src="../js/recipe_new.js"></script>
+
+    <!-- rarao -->
+    <script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script type="text/javascript">
+        function shareKakaotalk() {
+            Kakao.init("4c2a4edd5e9c56bc048dc1f7af37ac3a");      // 사용할 앱의 JavaScript 키를 설정
+            Kakao.Link.sendDefault({
+                objectType:"feed"
+                , content : {
+                    title:"피키캣(입짧은 고양이)"   // 콘텐츠의 타이틀
+                    , description:"\"피키캣\"에서레시피를 확신해보세요!"   // 콘텐츠 상세설명
+                    , imageUrl: "http://localhost/recipe_site/img/logo_pink.png" // 썸네일 이미지
+                    , link : {
+                        mobileWebUrl:"http://localhost/recipe_site/img/logo_pink.png"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                        , webUrl:"http://localhost/recipe_site/img/logo_pink.png" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                    }
+                }
+                , social : {
+                    likeCount:2       // LIKE 개수
+                    , commentCount:1    // 댓글 개수
+                    , sharedCount:1     // 공유 회수
+                }
+                , buttons : [
+                    {
+                        title:"게시글 확인"    // 버튼 제목
+                        , link : {
+                            mobileWebUrl:"http://localhost/recipe_site/index.php"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                        , webUrl:"http://localhost/recipe_site/index.php" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                        }
+                    }
+                ]
+            });
+        }
+    </script>
+
+
     <title>repice</title>
 </head>
 
@@ -222,7 +258,10 @@
             <div class="row flex_box">
                 <div class="col-md-2">
                     <div class="img-rounded text-center">
-                        <img src="../img/facebook.png">
+                        <!-- rarao icon -->
+                        <a onClick="shareKakaotalk();" id="kakao-link-btn"> 
+                            <img src="../img/rarao.png" width="50" /> 
+                        </a>
                     </div>
                 </div>
                 <!--트위터 아이콘-->
@@ -529,6 +568,7 @@
             </div>
         </footer>
     </div>
+
 </body>
 
 </html>
