@@ -78,7 +78,7 @@ if($userid && $time){
     $security_seq = password_hash($seq_num[0], PASSWORD_DEFAULT);
 
     echo "<script>
-    alert('レシピを作成しました');
+    alert('글이 등록되었습니다.');
     location.href='./recipe.php?recipe_seq=$security_seq';</script>";
 
  
